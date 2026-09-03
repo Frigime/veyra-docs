@@ -1,0 +1,240 @@
+/**
+ * Veyra documentation theme
+ * Shapes and dark-mode structure are pulled from the real Veyra dashboard
+ * shell (apps/dashboard/src/styles.css: --accent:#8c78ff on #050507). The
+ * documentation's own accent has since been retuned toward a cooler
+ * night-blue/periwinkle (see --vp-c-brand-*) to sit naturally against the
+ * Veyra Night starfield background below -- glassy, rounded, dark -- without
+ * literally copying any third-party doc site's design.
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --vp-font-family-base: 'Manrope', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --vp-font-family-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* Night-blue / periwinkle accent -- cooler and blue-dominant, with just a
+     trace of its old violet warmth left in the undertone. */
+  --vp-c-brand-1: #8098ff;
+  --vp-c-brand-2: #6b85f0;
+  --vp-c-brand-3: #5a70dc;
+  --vp-c-brand-soft: rgba(128, 152, 255, 0.16);
+
+  --vp-button-brand-bg: linear-gradient(135deg, #6b85f0, #8fa6ff);
+  --vp-button-brand-hover-bg: linear-gradient(135deg, #7c93f5, #a3b7ff);
+  --vp-button-brand-active-bg: linear-gradient(135deg, #5a70dc, #7c93f5);
+  --vp-button-brand-text: #f4f2ff;
+  --vp-button-brand-border: rgba(150, 165, 255, 0.35);
+}
+
+.dark {
+  --vp-c-bg: #050507;
+  --vp-c-bg-alt: #0a0a0d;
+  --vp-c-bg-elv: #0f0e14;
+  --vp-c-bg-soft: #121118;
+
+  --vp-c-text-1: #f4f2ff;
+  --vp-c-text-2: #b3aec1;
+  --vp-c-text-3: #77738a;
+
+  --vp-c-divider: rgba(255, 255, 255, 0.08);
+  --vp-c-gutter: rgba(255, 255, 255, 0.08);
+
+  --vp-c-default-1: #8098ff;
+  --vp-c-default-soft: rgba(128, 152, 255, 0.14);
+
+  --vp-code-block-bg: #0b0a10;
+  --vp-code-bg: rgba(128, 152, 255, 0.12);
+
+  --vp-sidebar-bg-color: rgba(7, 8, 14, 0.86);
+  --vp-nav-bg-color: rgba(6, 7, 13, 0.72);
+
+  --vp-custom-block-tip-border: transparent;
+  --vp-custom-block-tip-text: #d7deff;
+  --vp-custom-block-tip-bg: rgba(128, 152, 255, 0.10);
+
+  --vp-custom-block-warning-bg: rgba(240, 184, 74, 0.10);
+  --vp-custom-block-warning-text: #f3d9a0;
+
+  --vp-custom-block-danger-bg: rgba(237, 91, 104, 0.10);
+  --vp-custom-block-danger-text: #ffc2c8;
+
+  --vp-custom-block-info-bg: rgba(122, 162, 255, 0.10);
+  --vp-custom-block-info-text: #cfe0ff;
+
+  /*
+   * Veyra Night background: near-black at the very top, deepening clearly
+   * into a navy/indigo night sky through the page, with a richer blue
+   * atmospheric glow toward the lower half and edges, and a visible (but
+   * still small and tasteful) scattering of stars. Pure CSS gradients only
+   * (no image asset) -- see the star field and atmosphere layers below.
+   * `background-attachment: fixed` anchors the whole effect to the viewport
+   * so it reads the same on short and very long documentation pages, and
+   * stays cheap to paint (no blur/filters/canvas/animation).
+   */
+  --veyra-star-field:
+    radial-gradient(1px 1px at 6% 8%, rgba(255, 255, 255, 0.65), transparent),
+    radial-gradient(1px 1px at 14% 22%, rgba(255, 255, 255, 0.45), transparent),
+    radial-gradient(2px 2px at 23% 5%, rgba(255, 255, 255, 0.85), transparent),
+    radial-gradient(1px 1px at 31% 34%, rgba(255, 255, 255, 0.40), transparent),
+    radial-gradient(1.5px 1.5px at 42% 12%, rgba(255, 255, 255, 0.60), transparent),
+    radial-gradient(1px 1px at 52% 28%, rgba(210, 220, 255, 0.50), transparent),
+    radial-gradient(2.5px 2.5px at 61% 7%, rgba(255, 255, 255, 0.90), transparent),
+    radial-gradient(1px 1px at 73% 19%, rgba(255, 255, 255, 0.42), transparent),
+    radial-gradient(2px 2px at 83% 9%, rgba(255, 255, 255, 0.80), transparent),
+    radial-gradient(1px 1px at 91% 31%, rgba(255, 255, 255, 0.48), transparent),
+    radial-gradient(1.5px 1.5px at 9% 41%, rgba(255, 255, 255, 0.55), transparent),
+    radial-gradient(1px 1px at 19% 52%, rgba(255, 255, 255, 0.38), transparent),
+    radial-gradient(2px 2px at 28% 63%, rgba(210, 220, 255, 0.70), transparent),
+    radial-gradient(1px 1px at 37% 48%, rgba(255, 255, 255, 0.42), transparent),
+    radial-gradient(1.5px 1.5px at 47% 58%, rgba(255, 255, 255, 0.55), transparent),
+    radial-gradient(1px 1px at 58% 44%, rgba(255, 255, 255, 0.36), transparent),
+    radial-gradient(2.5px 2.5px at 66% 61%, rgba(255, 255, 255, 0.85), transparent),
+    radial-gradient(1px 1px at 77% 52%, rgba(255, 255, 255, 0.40), transparent),
+    radial-gradient(1.5px 1.5px at 87% 46%, rgba(255, 255, 255, 0.58), transparent),
+    radial-gradient(1px 1px at 96% 58%, rgba(255, 255, 255, 0.40), transparent),
+    radial-gradient(1px 1px at 4% 68%, rgba(255, 255, 255, 0.42), transparent),
+    radial-gradient(2px 2px at 13% 77%, rgba(255, 255, 255, 0.75), transparent),
+    radial-gradient(1px 1px at 22% 86%, rgba(255, 255, 255, 0.34), transparent),
+    radial-gradient(1.5px 1.5px at 33% 72%, rgba(210, 220, 255, 0.55), transparent),
+    radial-gradient(1px 1px at 44% 81%, rgba(255, 255, 255, 0.36), transparent),
+    radial-gradient(2px 2px at 54% 69%, rgba(255, 255, 255, 0.72), transparent),
+    radial-gradient(1px 1px at 63% 88%, rgba(255, 255, 255, 0.34), transparent),
+    radial-gradient(1.5px 1.5px at 72% 76%, rgba(255, 255, 255, 0.52), transparent),
+    radial-gradient(1px 1px at 81% 66%, rgba(255, 255, 255, 0.40), transparent),
+    radial-gradient(2px 2px at 92% 84%, rgba(255, 255, 255, 0.68), transparent),
+    radial-gradient(1px 1px at 3% 95%, rgba(255, 255, 255, 0.30), transparent),
+    radial-gradient(1px 1px at 17% 93%, rgba(255, 255, 255, 0.36), transparent),
+    radial-gradient(1.5px 1.5px at 38% 3%, rgba(255, 255, 255, 0.55), transparent),
+    radial-gradient(1px 1px at 48% 92%, rgba(255, 255, 255, 0.30), transparent),
+    radial-gradient(2px 2px at 57% 15%, rgba(210, 220, 255, 0.65), transparent),
+    radial-gradient(1px 1px at 68% 97%, rgba(255, 255, 255, 0.32), transparent),
+    radial-gradient(1px 1px at 79% 37%, rgba(255, 255, 255, 0.38), transparent),
+    radial-gradient(1.5px 1.5px at 89% 95%, rgba(255, 255, 255, 0.48), transparent),
+    radial-gradient(1px 1px at 97% 12%, rgba(255, 255, 255, 0.36), transparent);
+}
+
+/*
+ * VitePress's own base styles set an OPAQUE `background-color` directly on
+ * `body` (from --vp-c-bg). That paints on top of and completely hides
+ * anything set on `html`/`.dark`, so the night-sky background has to be
+ * applied to `body` itself (with enough selector specificity to win) rather
+ * than to `.dark` alone, or none of it ever actually renders.
+ */
+.dark body {
+  background-color: #050608;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-image:
+    var(--veyra-star-field),
+    radial-gradient(ellipse 110% 75% at 50% 105%, rgba(63, 100, 214, 0.42), transparent 70%),
+    radial-gradient(ellipse 65% 55% at 0% 100%, rgba(56, 88, 196, 0.24), transparent 70%),
+    radial-gradient(ellipse 65% 55% at 100% 100%, rgba(56, 88, 196, 0.22), transparent 70%),
+    radial-gradient(circle at 72% -8%, rgba(120, 140, 250, 0.13), transparent 42%),
+    radial-gradient(circle at 12% 85%, rgba(90, 105, 215, 0.13), transparent 42%),
+    linear-gradient(to bottom, #050608 0%, #070c17 30%, #0a1226 58%, #0d1830 80%, #101c3c 100%);
+}
+
+:root:not(.dark) {
+  --vp-c-bg: #f7f6fb;
+  --vp-c-bg-alt: #efedf6;
+  --vp-c-bg-elv: #ffffff;
+  --vp-c-text-1: #1c1a24;
+  --vp-c-text-2: #55516a;
+  --vp-c-divider: rgba(30, 20, 60, 0.10);
+}
+
+.VPNavBar { backdrop-filter: blur(20px) saturate(130%); border-bottom: 1px solid var(--vp-c-divider); }
+.VPSidebar { border-right: 1px solid var(--vp-c-divider); backdrop-filter: blur(16px) saturate(120%); }
+
+/*
+ * VitePress's default .VPFooter paints an OPAQUE var(--vp-c-bg) rectangle,
+ * which (like body before it) hides the night-sky gradient completely and
+ * reads as a hard black bar at the bottom of the homepage. Make it a subtle
+ * translucent navy surface instead so the background continues through it.
+ */
+.dark .VPFooter {
+  background-color: rgba(9, 13, 26, 0.34);
+  backdrop-filter: blur(8px);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.vp-doc div[class*='language-'],
+.vp-doc .custom-block,
+.vp-doc table,
+.VPFeature,
+.VPButton {
+  border-radius: 14px !important;
+}
+
+.vp-doc div[class*='language-'] {
+  border: 1px solid var(--vp-c-divider);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03), 0 12px 30px rgba(0, 0, 0, 0.25);
+}
+
+.vp-doc .custom-block {
+  border: 1px solid var(--vp-c-divider);
+  backdrop-filter: blur(10px);
+}
+
+/*
+ * VitePress applies --vp-button-brand-*-bg via `background-color`, which
+ * silently drops a gradient value (it's not a valid color) -- so the brand
+ * button has never actually painted its intended fill. `background`
+ * shorthand accepts a gradient, so re-declare it here to make the accent
+ * gradient actually render.
+ */
+.VPButton.brand {
+  background: var(--vp-button-brand-bg);
+  box-shadow: 0 8px 25px rgba(91, 110, 220, 0.35);
+  border: 1px solid var(--vp-button-brand-border);
+}
+.VPButton.brand:hover {
+  background: var(--vp-button-brand-hover-bg);
+  transform: translateY(-1px);
+  box-shadow: 0 12px 32px rgba(91, 110, 220, 0.5);
+}
+.VPButton.brand:active { background: var(--vp-button-brand-active-bg); }
+
+.VPFeature {
+  border: 1px solid var(--vp-c-divider) !important;
+  background: linear-gradient(145deg, rgba(128, 152, 255, 0.06), rgba(10, 10, 13, 0.2));
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+.VPFeature:hover { transform: translateY(-3px); border-color: rgba(128, 152, 255, 0.35) !important; }
+
+.VPHero .image-bg { background: radial-gradient(circle, rgba(128, 152, 255, 0.35) 0%, transparent 70%) !important; }
+.VPHero .name .clip {
+  background: linear-gradient(120deg, #a3b7ff, #6b85f0);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.VPSidebarItem.is-active > .item > .link .text {
+  color: var(--vp-c-brand-1) !important;
+  font-weight: 700;
+}
+
+.vp-doc :not(pre) > code {
+  border-radius: 6px;
+  border: 1px solid var(--vp-c-divider);
+}
+
+.vp-doc img {
+  border-radius: 14px;
+  border: 1px solid var(--vp-c-divider);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+}
+
+.screenshot-todo {
+  display: block;
+  padding: 28px 20px;
+  text-align: center;
+  border-radius: 14px;
+  border: 1px dashed rgba(128, 152, 255, 0.4);
+  background: rgba(128, 152, 255, 0.06);
+  color: var(--vp-c-text-2);
+  font-size: 0.85rem;
+  margin: 16px 0;
+}
